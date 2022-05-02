@@ -45,25 +45,48 @@
                 </div>
             </div>
         </header>
-        <!-- About-->
+        <!-- Calculation -->
         <section class="calculation-section text-center" id="calculation">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Выберите бренд вашего авто</h2>
+                        <h2 class="text-white mb-4">Выберите марку вашего авто</h2>
                         <p class="text-white-50">
-                            Если бренда/марки вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить ваш/вашу брен/марку.
+                            Если марки вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить вашу марку.
                         </p>
                     </div>
                 </div>
                 <div class="container px-4 px-lg-5">
                     <div class="row gx-4 mb-3 gx-lg-5">
                         <div class="col mb-5 col-cursor" th:each="brand : ${brands}">
-                            <div class="card py-4 h-100">
+                            <div class="card py-4 h-100" th:id="${brand.getName()}" onclick="getModels(this.id)">
                                 <div class="card-body text-center d-flex justify-content-center">
                                     <img class="brand-image" th:src="'assets/images/brands/' + ${brand.getName()} + '.jpg'">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center hidden" id="models">
+                    <div class="col-lg-8">
+                        <h2 class="text-white">Выберите модель вашего авто</h2>
+                        <p class="text-white-50 mb-0">
+                            Если модели вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить вашу модель.
+                        </p>
+                    </div>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 mb-3 gx-lg-5" id="modelsList">
+                            <!-- Models here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center hidden" id="details">
+                    <div class="col-lg-8">
+                        <h2 class="text-white">Выберите детали с дефектом</h2>
+                    </div>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 mb-3 gx-lg-5" id="detailsList">
+                            <!-- Details here -->
                         </div>
                     </div>
                 </div>
@@ -144,6 +167,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script type="text/javascript" src="/js/scripts.js"></script>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
             document.getElementById("year").innerHTML = new Date().getFullYear();
         </script>

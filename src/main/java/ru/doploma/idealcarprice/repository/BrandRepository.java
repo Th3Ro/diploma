@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface BrandRepository extends CrudRepository<Brand, Long> {
     List<Brand> findAll();
+
     Brand findByName(String name);
 }

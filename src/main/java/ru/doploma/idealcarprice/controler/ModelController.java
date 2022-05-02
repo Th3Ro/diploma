@@ -16,10 +16,14 @@ public class ModelController {
     private final BrandService brandService;
 
     @PostMapping("/models")
-    public List<ru.doploma.idealcarprice.model.Model> getModels(@RequestBody String brandName) {
+    public List<Model> getModels(@RequestBody String brandName) {
         Brand brand = brandService.findByName(brandName);
-        List<Model> models = brand.getModels();
-//        List<Model> models = modelService.findAllByBrand(brand);
+        List<Model> models = modelService.findAllByBrand(brand);
         return models;
+    }
+
+    @GetMapping("/brands")
+    public List<Brand> getBrands() {
+        return brandService.findAll();
     }
 }

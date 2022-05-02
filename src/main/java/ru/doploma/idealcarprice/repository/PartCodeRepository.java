@@ -1,15 +1,14 @@
 package ru.doploma.idealcarprice.repository;
 
-
 import org.springframework.data.repository.CrudRepository;
 import ru.doploma.idealcarprice.model.Brand;
 import ru.doploma.idealcarprice.model.Model;
+import ru.doploma.idealcarprice.model.PartCode;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ModelRepository extends CrudRepository<Model, Long> {
-    Optional<Model> findById (Long id);
+public interface PartCodeRepository extends CrudRepository<PartCode, Long> {
+    List<PartCode> findAll();
 
-    List<Model> findAllByBrand (Brand brand);
+    List<PartCode> findAllByModel (Model model);
 }

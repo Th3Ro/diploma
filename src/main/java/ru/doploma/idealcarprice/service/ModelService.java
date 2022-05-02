@@ -7,6 +7,7 @@ import ru.doploma.idealcarprice.model.Model;
 import ru.doploma.idealcarprice.repository.ModelRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,5 +16,9 @@ public class ModelService {
 
     public List<Model> findAllByBrand(Brand brand) {
         return modelRepository.findAllByBrand(brand);
+    }
+
+    public Model findById(Long id) {
+        return modelRepository.findById(id).get();
     }
 }

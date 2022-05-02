@@ -1,5 +1,6 @@
 package ru.doploma.idealcarprice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
@@ -27,6 +28,7 @@ public class Model {
 
     @OneToMany(mappedBy = "model", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    @JsonIgnore
     private List<PartCode> partCodes;
 
     @Override
