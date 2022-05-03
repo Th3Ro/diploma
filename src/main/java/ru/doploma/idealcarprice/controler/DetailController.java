@@ -14,6 +14,7 @@ import java.util.List;
 public class DetailController {
     ModelService modelService;
 
+    // todo create logic
 //    @PostMapping("/details")
 //    public List<Model> getModels(@RequestBody Long modelId) {
 //        Model model = modelService.findById(modelId);

@@ -60,42 +60,45 @@ function getModels(brand){
                 $('#modelsList').append(
                     '<div class="col-md-4 mt-5 mb-md-0 col-cursor">' +
                         '<div class="card py-4 h-100" id="' + model.id + '" onClick="getDetails(this.id)">' +
-                            '<div class="card-body text-center">' +
-                                '<h4 class="text-uppercase m-0">' + model.name + '</h4>' +
+                            '<div class="card-body d-flex align-items-center">' +
+                                '<h4 class="text-uppercase m-auto">' + model.name + '</h4>' +
                             '</div>' +
                         '</div>' +
                     '</div>'
                 );
             }
+            const el = document.getElementById('models');
+            el.scrollIntoView();
         }
     });
 }
 
-function getDetails(modelId){
-    $.ajax({
-        url: '/details',
-        type: 'POST',
-        data: modelId,
-        dataType: 'text',
-        contentType: false,
-        success: function(response) {
-            responseData = JSON.parse(response);
-            $('#models').removeClass('hidden');
-            console.log(responseData);
-            $('#modelsList').empty();
-            for (let i = 0; i <= responseData.length-1; i++) {
-                let model = responseData[i];
-                console.log(model.name);
-                $('#modelsList').append(
-                    '<div class="col mb-5 col-cursor" th:each="brand : ${brands}">' +
-                    '<div class="card py-4 h-100" id="' + model.id + '" onClick="getModels(this.id)">' +
-                    '<div class="card-body text-center d-flex justify-content-center">' +
-                    '<h3 class="text-uppercase m-0">' + model.name + '</h3>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>'
-                );
-            }
-        }
-    });
+function getDetails(modelId) {
+    console.log("It's just work")
+    // $.ajax({
+    //     url: '/details',
+    //     type: 'POST',
+    //     data: modelId,
+    //     dataType: 'text',
+    //     contentType: false,
+    //     success: function(response) {
+    //         responseData = JSON.parse(response);
+    //         $('#models').removeClass('hidden');
+    //         console.log(responseData);
+    //         $('#modelsList').empty();
+    //         for (let i = 0; i <= responseData.length-1; i++) {
+    //             let model = responseData[i];
+    //             console.log(model.name);
+    //             $('#modelsList').append(
+    //                 '<div class="col mb-5 col-cursor" th:each="brand : ${brands}">' +
+    //                 '<div class="card py-4 h-100" id="' + model.id + '" onClick="getModels(this.id)">' +
+    //                 '<div class="card-body text-center d-flex justify-content-center">' +
+    //                 '<h3 class="text-uppercase m-0">' + model.name + '</h3>' +
+    //                 '</div>' +
+    //                 '</div>' +
+    //                 '</div>'
+    //             );
+    //         }
+    //     }
+    // });
 }
