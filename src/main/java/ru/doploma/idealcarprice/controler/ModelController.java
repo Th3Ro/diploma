@@ -15,6 +15,8 @@ public class ModelController {
     private final ModelService modelService;
     private final BrandService brandService;
 
+    // todo добавить переменню для хранения текущей модели авто и попробовать сделать ее в скоупе session
+
     @PostMapping("/models")
     public List<Model> getModels(@RequestBody String brandName) {
         Brand brand = brandService.findByName(brandName);

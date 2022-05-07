@@ -1,5 +1,6 @@
 package ru.doploma.idealcarprice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
@@ -21,15 +22,16 @@ public class Detail {
     @Column(name = "name")
     private String name;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "details_defects",
-//            joinColumns = @JoinColumn(name = "detail_id"),
-//            inverseJoinColumns = @JoinColumn(name = "defect_id")
-//    )
-//    private List<Defect> defects;
-
     @OneToMany(mappedBy = "detail", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    @JsonIgnore
     private List<PartCode> partCodes;
+
+    @Override
+    public String toString() {
+        return "Detail{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

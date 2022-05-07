@@ -20,11 +20,21 @@ public class PartCode {
     @Column(name = "vendor_code")
     private String vendorCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "detail_id")
     private Detail detail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id")
     private Model model;
+
+    @Override
+    public String toString() {
+        return "PartCode{" +
+                "id=" + id +
+                ", vendorCode='" + vendorCode + '\'' +
+                ", detail=" + detail.getName() +
+                ", model=" + model.getName() +
+                '}';
+    }
 }

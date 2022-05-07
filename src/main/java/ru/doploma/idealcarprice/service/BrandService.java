@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class BrandService {
-    private BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
 
     public List<Brand> findAll() {
         return brandRepository.findAll();

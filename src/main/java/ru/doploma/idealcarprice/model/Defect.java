@@ -20,14 +20,6 @@ public class Defect {
     @Column(name = "name")
     private String name;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "details_defects",
-//            joinColumns = @JoinColumn(name = "defect_id"),
-//            inverseJoinColumns = @JoinColumn(name = "detail_id")
-//    )
-//    private List<Detail> details;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "repairType_id")
     private RepairType repairType;
