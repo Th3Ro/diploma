@@ -3,7 +3,6 @@ package ru.doploma.idealcarprice.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;

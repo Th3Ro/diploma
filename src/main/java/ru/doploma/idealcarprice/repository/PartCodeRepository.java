@@ -1,7 +1,6 @@
 package ru.doploma.idealcarprice.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.doploma.idealcarprice.model.Brand;
 import ru.doploma.idealcarprice.model.Model;
 import ru.doploma.idealcarprice.model.PartCode;
 

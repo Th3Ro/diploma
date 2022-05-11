@@ -15,17 +15,11 @@ public class ModelController {
     private final ModelService modelService;
     private final BrandService brandService;
 
-    // todo добавить переменню для хранения текущей модели авто и попробовать сделать ее в скоупе session
+    public static Model selectedModel = null;
 
     @PostMapping("/models")
     public List<Model> getModels(@RequestBody String brandName) {
         Brand brand = brandService.findByName(brandName);
-        List<Model> models = modelService.findAllByBrand(brand);
-        return models;
-    }
-
-    @GetMapping("/brands")
-    public List<Brand> getBrands() {
-        return brandService.findAll();
+        return modelService.findAllByBrand(brand);
     }
 }

@@ -75,8 +75,8 @@ function getModels(brand) {
             for (let i = 0; i <= responseData.length-1; i++) {
                 let model = responseData[i];
                 $('#modelsList').append(
-                    '<div class="col-md-4 mt-5 mb-md-0 col-cursor">' +
-                        '<div class="card py-4 h-100" id="' + model.id + '" onClick="getDetails(this.id)">' +
+                    '<div class="col-md-4 mt-5 mb-md-0 col-animate pointer-cursor">' +
+                        '<div class="card py-4 h-100" id="' + model.id + 'model" onClick="getDetailsAndDefects(this.id)">' +
                             '<div class="card-body d-flex align-items-center">' +
                                 '<h4 class="text-uppercase m-auto">' + model.name + '</h4>' +
                             '</div>' +
@@ -90,40 +90,65 @@ function getModels(brand) {
     });
 }
 
-function getDetails(modelId) {
-    console.log("It's just work");
-    console.log(modelId);
+function getDetailsAndDefects(modelId) {
+    modelId = modelId.replace('model', '');
     $.ajax({
-        url: '/details',
-        type: 'POST',
-        data: modelId,
-        dataType: 'text',
-        contentType: false,
+        url: '/defects',
+        type: 'GET',
         success: function(response) {
-            responseData = JSON.parse(response);
-            console.log(responseData);
-            if (responseData !== null) {
-                $('#details').removeClass('hidden');
-                $('#detailsList').empty();
-                for (let i = 0; i <= responseData.length-1; i++) {
-                    let detail = responseData[i];
-                    console.log(detail.name);
-                    $('#detailsList').append(
-                        '<div class="col-md-4 mt-5 mb-md-0 col-cursor">' +
-                            '<div class="card py-4 h-100" id="' + detail.id + '" onClick="">' +
-                                '<div class="card-body text-center">' +
-                                    '<h4 class="text-uppercase m-0">' + detail.name + '</h4>' +
-                                    '<hr class="my-4 mx-auto"/>' +
-                                    '<div class="small text-black-50">Повреждение:' +
+            defects = response;
+            $.ajax({
+                url: '/details',
+                type: 'POST',
+                data: modelId,
+                dataType: 'text',
+                contentType: false,
+                success: function(response) {
+                    responseData = JSON.parse(response);
+                    if (responseData !== null) {
+                        $('#details').removeClass('hidden');
+                        $('#detailsList').empty();
+                        for (let i = 0; i <= responseData.length-1; i++) {
+                            let detail = responseData[i];
+                            $('#detailsList').append(
+                                '<div class="col-md-4 mt-5 mb-md-0 col-animate">' +
+                                    '<div class="card py-3 h-100" id="' + detail.id + 'detail" onClick="">' +
+                                        '<div class="card-body text-center">' +
+                                            '<h4 class="text-uppercase m-0">' + detail.name + '</h4>' +
+                                            '<hr class="my-4 mx-auto"/>' +
+                                            '<div class="small text-black-50">Повреждение:' +
+                                            '</div>' +
+                                        '</div>' +
                                     '</div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>'
-                    );
+                                '</div>'
+                            );
+                            let id = '#' + detail.id + 'detail';
+                            let newForm = '<form action="" class="d-flex flex-column">';
+                            for (let i = 0; i <= defects.length-1; i++) {
+                                newForm +=
+                                    '<label class="d-flex align-items-start text-start mt-1 pointer-cursor" for="' + defects[i].name + detail.id + '">' +
+                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + defects[i].id + ')" id="' + defects[i].name + detail.id + '" name="' + detail.name + '" type="radio" value="' + defects[i].name + '">' +
+                                        defects[i].name +
+                                    '</label>';
+                            }
+                            newForm +=
+                                    '<label class="d-flex align-items-start text-start mt-1 pointer-cursor" for="nothing' + detail.id + '">' +
+                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + defects[i].id + ')" id="nothing' + detail.id + '" name="' + detail.name + '" type="radio" value="Ничего (не обязательно)">' +
+                                        'Ничего (не обязательно)' +
+                                    '</label>' +
+                                '</form>';
+                            $(id).children().append(newForm);
+                        }
+                    }
                 }
-                const el = document.getElementById('details');
-                el.scrollIntoView();
-            }
+            });
+            const el = document.getElementById('details');
+            el.scrollIntoView();
         }
     });
+}
+
+function onDefectSelected(defectId) {
+    //todo add functional
+    console.log("it's worked " + defectId);
 }

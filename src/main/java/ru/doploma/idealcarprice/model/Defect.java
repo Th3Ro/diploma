@@ -1,10 +1,10 @@
 package ru.doploma.idealcarprice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "defects")
@@ -22,5 +22,15 @@ public class Defect {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "repairType_id")
+    @JsonIgnore
     private RepairType repairType;
+
+    @Override
+    public String toString() {
+        return "Defect{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", repairType=" + repairType.getName() +
+                '}';
+    }
 }

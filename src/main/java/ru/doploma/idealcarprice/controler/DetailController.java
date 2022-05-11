@@ -15,12 +15,13 @@ import java.util.stream.Collectors;
 @RestController
 @AllArgsConstructor
 public class DetailController {
-    ModelService modelService;
+    private final ModelService modelService;
 
     @PostMapping("/details")
     public List<Detail> getDetails(@RequestBody String modelId) {
         try {
             Model model = modelService.findById(Long.parseLong(modelId));
+            ModelController.selectedModel = model;
             return model.getPartCodes().stream()
                     .map(PartCode::getDetail)
                     .collect(Collectors.toList());
