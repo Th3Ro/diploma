@@ -97,6 +97,23 @@ function getDetailsAndDefects(modelId) {
         type: 'GET',
         success: function(response) {
             defects = response;
+            $('#defectsExamples').empty();
+            $('#defectsExamples').append('<div class="row gx-4 gx-lg-5 d-flex justify-content-center"></div>>');
+            for(let i = 0; i < defects.length; i++) {
+                $('#defectsExamples').children().append(
+                    '<div class="col-md-4 mt-5 mb-md-0 col-animate">' +
+                        '<div class="card py-4 h-100">' +
+                            '<div class="card-body text-center">' +
+                                '<h5 class="text-uppercase m-0">' + defects[i].name + '</h5>' +
+                                '<hr class="my-4 mx-auto"/>' +
+                                '<div class="small text-black-50">' +
+                                    '<img class="brand-image" src="assets/images/defects/' + defects[i].name + '.jpg">' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                )
+            }
             $.ajax({
                 url: '/details',
                 type: 'POST',
@@ -127,28 +144,28 @@ function getDetailsAndDefects(modelId) {
                             for (let i = 0; i <= defects.length-1; i++) {
                                 newForm +=
                                     '<label class="d-flex align-items-start text-start mt-1 pointer-cursor" for="' + defects[i].name + detail.id + '">' +
-                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + defects[i].id + ')" id="' + defects[i].name + detail.id + '" name="' + detail.name + '" type="radio" value="' + defects[i].name + '">' +
+                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + detail.id + ', this.value)" id="' + defects[i].name + detail.id + '" name="' + detail.name + '" type="radio" value="' + defects[i].name + '">' +
                                         defects[i].name +
                                     '</label>';
                             }
                             newForm +=
                                     '<label class="d-flex align-items-start text-start mt-1 pointer-cursor" for="nothing' + detail.id + '">' +
-                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + defects[i].id + ')" id="nothing' + detail.id + '" name="' + detail.name + '" type="radio" value="Ничего (не обязательно)">' +
+                                        '<input class="align-self-center me-1" onchange="onDefectSelected(' + detail.id + ', this.value)" id="nothing' + detail.id + '" name="' + detail.name + '" type="radio" value="Ничего (не обязательно)">' +
                                         'Ничего (не обязательно)' +
                                     '</label>' +
                                 '</form>';
                             $(id).children().append(newForm);
                         }
                     }
+                    const el = document.getElementById('detailsList');
+                    el.scrollIntoView();
                 }
             });
-            const el = document.getElementById('details');
-            el.scrollIntoView();
         }
     });
 }
 
-function onDefectSelected(defectId) {
+function onDefectSelected(defectId, value) {
     //todo add functional
-    console.log("it's worked " + defectId);
+    console.log("it's worked " + defectId + ' value - ' + value);
 }

@@ -19,8 +19,8 @@ public class PartCode {
     @Column(name = "vendor_code")
     private String vendorCode;
 
-    @ManyToOne
-    @JoinColumn(name = "detail_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "detail_id", referencedColumnName = "id")
     private Detail detail;
 
     @ManyToOne(fetch = FetchType.LAZY)

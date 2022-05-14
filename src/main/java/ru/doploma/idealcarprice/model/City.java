@@ -5,31 +5,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "repair_types")
+@Table(name = "cities")
 @Data
 @NoArgsConstructor
-public class RepairType {
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
-
-    @OneToMany(mappedBy = "repairType", fetch = FetchType.LAZY)
-    private List<Defect> defects;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "repair_types_service_xpaths",
-            joinColumns = @JoinColumn(name = "repair_type_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_xpath_id")
+            name = "cities_service_сites",
+            joinColumns = @JoinColumn(name = "city_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_site_id")
     )
     @JsonIgnore
-    private List<ServiceXpath> serviceXpaths;
+    private List<ServiceSite> serviceSites = new ArrayList<>();
 }

@@ -3,9 +3,9 @@ package ru.doploma.idealcarprice.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,16 +22,25 @@ public class Detail {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "detail", fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    @OneToOne(mappedBy = "detail", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<PartCode> partCodes;
+    private PartCode partCode;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "details_service_xpaths",
+            joinColumns = @JoinColumn(name = "detail_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_xpath_id")
+    )
+    @JsonIgnore
+    private List<ServiceXpath> serviceXpaths = new ArrayList<>();
 
     @Override
     public String toString() {
         return "Detail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", partCode=" + partCode.getVendorCode() +
                 '}';
     }
 }
