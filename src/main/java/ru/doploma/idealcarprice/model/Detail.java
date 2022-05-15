@@ -19,7 +19,7 @@ public class Detail {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToOne(mappedBy = "detail", fetch = FetchType.LAZY)

@@ -16,7 +16,7 @@ public class DetailXpath {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "value", unique = true)
+    @Column(name = "value", unique = true, nullable = false)
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)

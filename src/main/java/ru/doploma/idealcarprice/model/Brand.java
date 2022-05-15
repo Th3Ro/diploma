@@ -20,7 +20,7 @@ public class Brand {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)

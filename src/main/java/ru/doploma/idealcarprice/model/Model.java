@@ -19,8 +19,11 @@ public class Model {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "auto_ru_code", unique = true)
+    private String autoRuCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")

@@ -16,7 +16,7 @@ public class PartCode {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "vendor_code")
+    @Column(name = "vendor_code", nullable = false)
     private String vendorCode;
 
     @OneToOne(cascade = CascadeType.ALL)

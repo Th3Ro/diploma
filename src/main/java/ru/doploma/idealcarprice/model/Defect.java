@@ -17,7 +17,7 @@ public class Defect {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

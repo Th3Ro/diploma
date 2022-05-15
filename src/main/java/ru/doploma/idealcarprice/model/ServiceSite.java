@@ -19,7 +19,7 @@ public class ServiceSite {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "url", unique = true)
+    @Column(name = "url", unique = true, nullable = false)
     private String url;
 
     @ManyToMany(mappedBy = "serviceSites", fetch = FetchType.LAZY)

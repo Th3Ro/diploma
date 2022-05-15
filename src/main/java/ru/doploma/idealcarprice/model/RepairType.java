@@ -18,7 +18,7 @@ public class RepairType {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "repairType", fetch = FetchType.LAZY)

@@ -18,7 +18,7 @@ public class ServiceXpath {
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "value", unique = true)
+    @Column(name = "value", unique = true, nullable = false)
     private String value;
 
     @ManyToMany(mappedBy = "serviceXpaths", fetch = FetchType.LAZY)
