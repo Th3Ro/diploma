@@ -32,4 +32,12 @@ public class RepairType {
     )
     @JsonIgnore
     private List<ServiceXpath> serviceXpaths;
+
+    @Override
+    public String toString() {
+        return "RepairType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

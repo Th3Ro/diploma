@@ -77,9 +77,18 @@ function getCities() {
 }
 
 function setCity(cityId) {
-    if ($('#brands').attr('class').split(/\s+/).includes('hidden')) getBrands();
+    if ($('#brands').attr('class').split(/\s+/).includes('hidden')) {
+        getBrands();
+        $.ajax({
+            url: '/city',
+            type: 'POST',
+            data: cityId,
+            dataType: 'text',
+            contentType: false
+        });
+    }
     else if (cityId == '') $('#brands').addClass('hidden');
-
+    console.log(cityId);
 }
 
 function getBrands() {

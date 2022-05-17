@@ -22,4 +22,13 @@ public class DetailXpath {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "detail_site_id")
     private DetailSite detailSite;
+
+    @Override
+    public String toString() {
+        return "DetailXpath{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                ", detailSite=" + detailSite.getUrl() +
+                '}';
+    }
 }

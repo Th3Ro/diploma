@@ -25,4 +25,12 @@ public class DetailSite {
     @OneToMany(mappedBy = "detailSite", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<DetailXpath> detailXpaths = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "DetailSite{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

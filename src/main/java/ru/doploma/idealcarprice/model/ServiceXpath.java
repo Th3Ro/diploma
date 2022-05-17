@@ -32,4 +32,13 @@ public class ServiceXpath {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_site_id")
     private ServiceSite serviceSite;
+
+    @Override
+    public String toString() {
+        return "ServiceXpath{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                ", serviceSite=" + serviceSite.getUrl() +
+                '}';
+    }
 }

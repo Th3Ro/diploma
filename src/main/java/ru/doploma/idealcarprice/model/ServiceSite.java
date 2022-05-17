@@ -24,9 +24,17 @@ public class ServiceSite {
 
     @ManyToMany(mappedBy = "serviceSites", fetch = FetchType.LAZY)
     @JsonIgnore
-    List<City> cities = new ArrayList<>();
+    private List<City> cities = new ArrayList<>();
 
     @OneToMany(mappedBy = "serviceSite", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<ServiceXpath> serviceXpaths = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "ServiceSite{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

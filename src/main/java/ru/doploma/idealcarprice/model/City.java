@@ -30,4 +30,12 @@ public class City {
     )
     @JsonIgnore
     private List<ServiceSite> serviceSites = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
