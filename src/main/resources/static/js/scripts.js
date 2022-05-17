@@ -1,15 +1,17 @@
+window.onload = getCities;
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
-    var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
+    let navbarShrink = function () {
+        const navbarCollapsible = $('#mainNav');
         if (!navbarCollapsible) {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.removeClass('navbar-shrink');
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.addClass('navbar-shrink');
         }
 
     };
@@ -19,15 +21,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
-
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
-    };
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -41,7 +34,6 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-
 });
 
 function goTop() {
@@ -58,8 +50,6 @@ function goContacts() {
     const el = document.getElementById('contacts');
     el.scrollIntoView();
 }
-
-window.onload = getCities;
 
 function getCities() {
     $.ajax({
@@ -87,8 +77,7 @@ function setCity(cityId) {
             contentType: false
         });
     }
-    else if (cityId == '') $('#brands').addClass('hidden');
-    console.log(cityId);
+    else if (cityId === '') $('#brands').addClass('hidden');
 }
 
 function getBrands() {
@@ -220,7 +209,11 @@ function getDetailsAndDefects(modelId) {
     });
 }
 
-function onDefectSelected(defectId, value) {
-    //todo add functional
-    console.log("it's worked " + defectId + ' value - ' + value);
+function onDefectSelected(detailId, value) {
+    $.ajax({
+        url: '/defect',
+        type: 'POST',
+        data: JSON.stringify({"detailId":detailId, "value":value}),
+        contentType: 'application/json'
+    });
 }

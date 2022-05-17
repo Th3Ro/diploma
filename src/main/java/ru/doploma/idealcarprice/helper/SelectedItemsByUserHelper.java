@@ -4,15 +4,12 @@ import ru.doploma.idealcarprice.model.City;
 import ru.doploma.idealcarprice.model.Defect;
 import ru.doploma.idealcarprice.model.PartCode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SelectedItemsByUserHelper {
     private static City selectedCity;
-    private static List<PartCode> selectedPartCodes = new ArrayList<>();
-    private static Map<Long, Defect> selectedDefects = new HashMap<>();
+//    private static Set<String> selectedVendorCodes = new HashSet<>();
+    private static Map<String, Defect> selectedVendorCodesAndDefects = new HashMap<>();
 
     public static void setSelectedCity(City city) {
         selectedCity = city;
@@ -22,32 +19,32 @@ public class SelectedItemsByUserHelper {
         return selectedCity;
     }
 
-    public static void addToSelectedDetails(PartCode partCode) {
-        selectedPartCodes.add(partCode);
+//    public static void addToSelectedVendorCodes(String vendorCode) {
+//        selectedVendorCodes.add(vendorCode);
+//    }
+//
+//    public static Set<String> getSelectedVendorCodes() {
+//        return selectedVendorCodes;
+//    }
+//
+//    public static void clearSelectedDetails() {
+//        selectedVendorCodes.clear();
+//        clearSelectedVendorCodesAndDefects();
+//    }
+
+    public static void addToSelectedVendorCodesAndDefects(String vendorCode, Defect defect) {
+        selectedVendorCodesAndDefects.put(vendorCode, defect);
     }
 
-    public static List<PartCode> getSelectedPartCodes() {
-        return selectedPartCodes;
+    public static Map<String, Defect> getSelectedVendorCodesAndDefects() {
+        return selectedVendorCodesAndDefects;
     }
 
-    public static void clearSelectedDetails() {
-        selectedPartCodes.clear();
-        clearSelectedDefects();
+    public static void clearSelectedVendorCodesAndDefects() {
+        selectedVendorCodesAndDefects.clear();
     }
 
-    public static void addToSelectedDefects(Long detailId, Defect defect) {
-        selectedDefects.put(detailId, defect);
-    }
-
-    public static Map<Long, Defect> getSelectedDefects() {
-        return selectedDefects;
-    }
-
-    public static void setSelectedDefects() {
-        selectedDefects.clear();
-    }
-
-    public static void clearSelectedDefects() {
-        selectedDefects.clear();
+    public static void removeFromSelectedVendorCodesAndDefects(String vendorCode) {
+        selectedVendorCodesAndDefects.remove(vendorCode);
     }
 }
