@@ -33,8 +33,6 @@ public class Brand {
         return "Brand{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", models=" + models.stream().map(model-> String.valueOf(model.toString()))
-                .collect(Collectors.joining("-", "{", "}")) +
                 '}';
     }
 }

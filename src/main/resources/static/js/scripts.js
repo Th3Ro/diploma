@@ -59,6 +59,52 @@ function goContacts() {
     el.scrollIntoView();
 }
 
+window.onload = getCities;
+
+function getCities() {
+    $.ajax({
+        url: '/cities',
+        type: 'GET',
+        success: function(response) {
+            for (let i = 0; i <= response.length-1; i++) {
+                let city = response[i];
+                $('#citySelector').append(
+                    '<option value="' + city.id + '">' + city.name + '</option>'
+                );
+            }
+        }
+    });
+}
+
+function setCity(cityId) {
+    if ($('#brands').attr('class').split(/\s+/).includes('hidden')) getBrands();
+    else if (cityId == '') $('#brands').addClass('hidden');
+
+}
+
+function getBrands() {
+    $.ajax({
+        url: '/brands',
+        type: 'GET',
+        success: function(response) {
+            $('#brands').removeClass('hidden');
+            $('#brandsList').empty();
+            for (let i = 0; i <= response.length-1; i++) {
+                let brand = response[i];
+                $('#brandsList').append(
+                    '<div class="col mb-5 col-animate pointer-cursor">' +
+                        '<div class="card py-4 h-100" id="' + brand.name + '" onClick="getModels(this.id)">' +
+                            '<div class="card-body text-center d-flex justify-content-center">' +
+                                '<img class="brand-image" src="assets/images/brands/' + brand.name + '.jpg">' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                );
+            }
+        }
+    });
+}
+
 function getModels(brand) {
     $.ajax({
         url: '/models',

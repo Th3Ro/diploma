@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html lang="ru">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -41,7 +41,6 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Ideal Car Price</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Бесплатный сервис, который поможет Вам оценить свой автомобиль по достоинству.</h2>
-                        <!-- TODO create city selector -->
                         <a class="btn btn-primary" onclick="goCalculate()" href="javascript:void(0)">Начать расчёт</a>
                     </div>
                 </div>
@@ -52,20 +51,30 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
+                        <h2 class="text-white mb-4">Выберите город</h2>
+                        <p class="text-white-50 mb-4">
+                            В выбранном городе будет осуществляться поиск сервисов и цен.
+                        </p>
+                    </div>
+                    <div class="container px-4 px-lg-5 d-flex justify-content-center">
+                        <div class="row gx-4 mb-5 gx-lg-5 col-md-4">
+                            <select class="form-select" id="citySelector" aria-label="City selection" onchange="setCity(this.value)">
+                                <option selected></option>
+                                <!-- Cities here -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center hidden" id="brands">
+                    <div class="col-lg-8">
                         <h2 class="text-white mb-4">Выберите марку вашего авто</h2>
                         <p class="text-white-50">
                             Если марки вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить вашу марку.
                         </p>
                     </div>
-                </div>
-                <div class="container px-4 px-lg-5">
-                    <div class="row gx-4 mb-3 gx-lg-5">
-                        <div class="col mb-5 col-animate pointer-cursor" th:each="brand : ${brands}">
-                            <div class="card py-4 h-100" th:id="${brand.getName()}" onclick="getModels(this.id)">
-                                <div class="card-body text-center d-flex justify-content-center">
-                                    <img class="brand-image" th:src="'assets/images/brands/' + ${brand.getName()} + '.jpg'">
-                                </div>
-                            </div>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 mb-3 gx-lg-5" id="brandsList">
+                            <!-- Brands here -->
                         </div>
                     </div>
                 </div>
