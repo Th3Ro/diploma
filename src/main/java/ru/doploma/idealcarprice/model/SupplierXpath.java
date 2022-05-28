@@ -1,36 +1,34 @@
 package ru.doploma.idealcarprice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "defects")
+@Table(name = "supplier_xpaths")
 @Data
 @NoArgsConstructor
-public class Defect {
+public class SupplierXpath {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "value", unique = true, nullable = false)
+    private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "repairType_id")
-    @JsonIgnore
-    private RepairType repairType;
+    @JoinColumn(name = "supplier_site_id")
+    private SupplierSite supplierSite;
 
     @Override
     public String toString() {
-        return "Defect{" +
+        return "SupplierXpath{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", repairType=" + repairType.getName() +
+                ", value='" + value + '\'' +
+                ", supplierSite=" + supplierSite.getUrl() +
                 '}';
     }
 }

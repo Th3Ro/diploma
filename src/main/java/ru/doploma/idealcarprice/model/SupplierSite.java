@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "detail_sites")
+@Table(name = "supplier_sites")
 @Data
 @NoArgsConstructor
-public class DetailSite {
+public class SupplierSite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +22,13 @@ public class DetailSite {
     @Column(name = "url", unique = true, nullable = false)
     private String url;
 
-    @OneToMany(mappedBy = "detailSite", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "supplierSite", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<DetailXpath> detailXpaths = new ArrayList<>();
+    private List<SupplierXpath> supplierXpaths = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "DetailSite{" +
+        return "SupplierSite{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
                 '}';

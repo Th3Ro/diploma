@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "details")
@@ -26,14 +24,9 @@ public class Detail {
     @JsonIgnore
     private PartCode partCode;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "details_service_xpaths",
-            joinColumns = @JoinColumn(name = "detail_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_xpath_id")
-    )
-    @JsonIgnore
-    private List<ServiceXpath> serviceXpaths = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "regulations_id")
+    private Regulations regulations;
 
     @Override
     public String toString() {

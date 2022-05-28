@@ -9,7 +9,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String index() {
-        SelectedItemsByUserHelper.clearSelectedVendorCodesAndDefects();
+        SelectedItemsByUserHelper.clearSelectedVendorCodesAndRegulations();
 //        SelectedItemsByUserHelper.clearSelectedDetails();
         return "index";
     }

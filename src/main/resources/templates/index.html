@@ -49,27 +49,11 @@
         <!-- Calculation -->
         <section class="calculation-section text-center" id="calculation">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Выберите город</h2>
-                        <p class="text-white-50 mb-4">
-                            В выбранном городе будет осуществляться поиск сервисов и цен.
-                        </p>
-                    </div>
-                    <div class="container px-4 px-lg-5 d-flex justify-content-center">
-                        <div class="row gx-4 mb-5 gx-lg-5 col-md-4">
-                            <select class="form-select" id="citySelector" aria-label="City selection" onchange="setCity(this.value)">
-                                <option selected></option>
-                                <!-- Cities here -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center hidden" id="brands">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Выберите марку вашего авто</h2>
-                        <p class="text-white-50">
-                            Если марки вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить вашу марку.
+                        <h2 class="text-white mb-4">Выберите марку авто</h2>
+                        <p class="text-white-50 mb-4">
+                            Если марки вашего нет в списке ниже, то свяжитесь с администратором сайта (контакты внизу) и попросите добавить необходимую марку марку.
                         </p>
                     </div>
                     <div class="container px-4 px-lg-5">
@@ -80,9 +64,9 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center hidden mb-5" id="models">
                     <div class="col-lg-8">
-                        <h2 class="text-white">Выберите модель вашего авто</h2>
+                        <h2 class="text-white">Выберите модель авто</h2>
                         <p class="text-white-50 mb-0">
-                            Если модели вашего авто нет в списке ниже, то Вы можете связаться с администратором сайта и попросить добавить вашу модель.
+                            Если модели авто нет в списке ниже, то свяжитесь с администратором сайта и попросите добавить необходимую модель.
                         </p>
                     </div>
                     <div class="container px-4 px-lg-5">
@@ -91,24 +75,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center hidden mb-5" id="details">
+                <div class="row gx-4 gx-lg-5 justify-content-center hidden mb-5" id="regulations">
                     <div class="col-lg-8">
-                        <h2 class="text-white">Ниже приведены примеры повреждений</h2>
-                    </div>
-                    <div class="container px-4 px-lg-5 mb-5">
-                        <div class="row gx-4 gx-lg-5" id="defectsExamples">
-                            <!-- Defects examples here -->
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <h2 class="text-white">Выберите детали и их дефекты</h2>
+                        <h2 class="text-white">Заполните регламент оценки</h2>
                         <p class="text-white-50 mb-0">
-                            Если на детали присутствует несколько различных повреждений, выберите самое сильное из перечня.
+                            Если в регламенте не хватает необходимого Вам пункта, обратитесь к администратору (контакты ниже).
                         </p>
                     </div>
                     <div class="container px-4 px-lg-5">
-                        <div class="row gx-4 mb-3 gx-lg-5" id="detailsList">
-                            <!-- Details here -->
+                        <div class="row gx-4 gx-lg-5 mb-3">
+                            <table class="table table-dark table-hover mt-4" id="regulationsTable">
+                                <!-- Regulations here -->
+                            </table>
+                        </div>
+                    </div>
+                    <div class="container px-4 px-lg-5 d-flex mt-4 h-100 align-items-center justify-content-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="text-center">
+                                <a class="btn btn-primary" onclick="goCalculate()" href="javascript:void(0)">Завершить расчёт</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,8 +107,8 @@
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="/assets/images/1.jpg" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Пока пусто</h4>
-                            <p class="text-black-50 mb-0">Может быть потом что-то добавится</p>
+                            <h4>Реклама</h4>
+                            <p class="text-black-50 mb-0">Здесь могла быть ваша реклама</p>
                         </div>
                     </div>
                 </div>

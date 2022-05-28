@@ -5,39 +5,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "repair_types")
+@Table(name = "body_works")
 @Data
 @NoArgsConstructor
-public class RepairType {
+public class BodyWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "serial")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "repairType", fetch = FetchType.LAZY)
-    private List<Defect> defects;
+    @Column(name = "price", precision = 10, scale = 2)
+    private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "repair_types_service_xpaths",
-            joinColumns = @JoinColumn(name = "repair_type_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_xpath_id")
-    )
+    @ManyToMany(mappedBy = "bodyWorks", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<ServiceXpath> serviceXpaths;
+    private List<Regulations> regulations = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "RepairType{" +
+        return "BodyWork{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
