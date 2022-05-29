@@ -19,13 +19,16 @@ public class PartCode {
     @Column(name = "vendor_code", nullable = false)
     private String vendorCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "detail_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "detail_id")
     private Detail detail;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
+
+    @Column(name = "count", nullable = false)
+    private Integer count;
 
     @Override
     public String toString() {
@@ -34,6 +37,7 @@ public class PartCode {
                 ", vendorCode='" + vendorCode + '\'' +
                 ", detail=" + detail.getName() +
                 ", model=" + model.getName() +
+                ", count=" + count +
                 '}';
     }
 }

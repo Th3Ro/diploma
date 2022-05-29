@@ -10,7 +10,7 @@ public class MainController {
     @RequestMapping("/")
     public String index() {
         SelectedItemsByUserHelper.clearSelectedVendorCodesAndRegulations();
-//        SelectedItemsByUserHelper.clearSelectedDetails();
+        SelectedItemsByUserHelper.clearSelectedModel();
         return "index";
     }
 }

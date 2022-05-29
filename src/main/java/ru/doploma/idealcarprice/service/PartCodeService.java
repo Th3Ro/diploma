@@ -7,16 +7,14 @@ import ru.doploma.idealcarprice.model.PartCode;
 import ru.doploma.idealcarprice.repository.PartCodeRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class PartCodeService {
     private final PartCodeRepository partCodeRepository;
 
-    public PartCode findByDetail_id(Long id) {
-        Optional<PartCode> partCode = partCodeRepository.findByDetail_Id(id);
-        return partCode.orElse(null);
+    public List<PartCode> findByDetail_id(Long id) {
+        return partCodeRepository.findByDetail_Id(id);
     }
 
     public List<PartCode> findAllByModel_id(Long id) {
@@ -29,5 +27,9 @@ public class PartCodeService {
 
     public List<PartCode> findAllByModel(Model model) {
         return partCodeRepository.findAllByModel(model);
+    }
+
+    public List<PartCode> findAllByDetail_idAndModel_id(Long detailId, Long modelId) {
+        return partCodeRepository.findAllByDetail_idAndModel_id(detailId, modelId);
     }
 }

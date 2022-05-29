@@ -1,40 +1,39 @@
 package ru.doploma.idealcarprice.helper;
 
-import ru.doploma.idealcarprice.model.Regulations;
+import ru.doploma.idealcarprice.model.Model;
+import ru.doploma.idealcarprice.model.PartCode;;
 
 import java.util.*;
 
 public class SelectedItemsByUserHelper {
-//    private static Set<String> selectedVendorCodes = new HashSet<>();
-    private static Map<String, Regulations> selectedVendorCodesAndRegulations = new HashMap<>();
+    private static Model selectedModel = null;
+    private static Map<String, List<PartCode>> selectedPartCodesAndRegulations = new HashMap<>();
 
-
-//    public static void addToSelectedVendorCodes(String vendorCode) {
-//        selectedVendorCodes.add(vendorCode);
-//    }
-//
-//    public static Set<String> getSelectedVendorCodes() {
-//        return selectedVendorCodes;
-//    }
-//
-//    public static void clearSelectedDetails() {
-//        selectedVendorCodes.clear();
-//        clearSelectedVendorCodesAndDefects();
-//    }
-
-    public static void addToSelectedVendorCodesAndRegulations(String vendorCode, Regulations regulations) {
-        selectedVendorCodesAndRegulations.put(vendorCode, regulations);
+    public static void changeSelectedModel(Model model) {
+        selectedModel = model;
     }
 
-    public static Map<String, Regulations> getSelectedVendorCodesAndRegulations() {
-        return selectedVendorCodesAndRegulations;
+    public static Model getSelectedModel() {
+        return selectedModel;
+    }
+
+    public static void clearSelectedModel () {
+        selectedModel = null;
+    }
+
+    public static void addToSelectedVendorCodesAndRegulations(String regulationsId, List<PartCode> partCodes) {
+        selectedPartCodesAndRegulations.put(regulationsId, partCodes);
+    }
+
+    public static Map<String, List<PartCode>> getSelectedPartCodesAndRegulations() {
+        return selectedPartCodesAndRegulations;
     }
 
     public static void clearSelectedVendorCodesAndRegulations() {
-        selectedVendorCodesAndRegulations.clear();
+        selectedPartCodesAndRegulations.clear();
     }
 
-    public static void removeFromSelectedVendorCodesAndRegulations(String vendorCode) {
-        selectedVendorCodesAndRegulations.remove(vendorCode);
+    public static void removeFromSelectedVendorCodesAndRegulations(String regulationsId) {
+        selectedPartCodesAndRegulations.remove(regulationsId);
     }
 }

@@ -81,7 +81,7 @@ function getModels(brand) {
         dataType: 'text',
         contentType: false,
         success: function(response) {
-            responseData = JSON.parse(response);
+            let responseData = JSON.parse(response);
             $('#models').removeClass('hidden');
             $('#modelsList').empty();
             $('#details').addClass('hidden');
@@ -90,7 +90,7 @@ function getModels(brand) {
                 let model = responseData[i];
                 $('#modelsList').append(
                     '<div class="col-md-4 mt-5 mb-md-0 col-animate pointer-cursor">' +
-                        '<div class="card py-4 h-100" id="' + model.id + 'model" onClick="getRegulations()">' +
+                        '<div class="card py-4 h-100" id="' + model.id + 'model" onClick="getRegulations(this.id)">' +
                             '<div class="card-body d-flex align-items-center">' +
                                 '<h4 class="text-uppercase m-auto">' + model.name + '</h4>' +
                             '</div>' +
@@ -104,7 +104,16 @@ function getModels(brand) {
     });
 }
 
-function getRegulations() {
+function getRegulations(modelId) {
+    modelId = modelId.replace('model', '');
+    $.ajax({
+        url: '/model',
+        type: 'POST',
+        data: modelId,
+        dataType: 'text',
+        contentType: false
+    });
+
     $.ajax({
         url: '/regulations',
         type: 'GET',
@@ -116,28 +125,27 @@ function getRegulations() {
                 for (let i = 0; i <= regulations.length-1; i++) {
                     let row = regulations[i];
                     if (row.needBodyWork) {
+                        let newDropbox = '<select class="form-select text-light bg-transparent" id="bodyWorks" onchange="onBodyWorkSelected('+ row.id +', this.value)">' +
+                                            '<option selected value="Нет повреждений" class="bg-dark">Нет повреждений</option>';
+                        for (let i = 0; i <= row.bodyWorks.length-1; i++) {
+                            newDropbox += '<option value="' + row.bodyWorks[i].name + '" class="bg-dark">'+ row.bodyWorks[i].name +'</option>';
+                        }
+                        newDropbox += '</select>';
                         $('#regulationsTable').append(
-                            '<tr class="text-light text-start">' +
+                            '<tr class="text-start">' +
                                 '<td>'+ row.criterionName + '</td>' +
-                                '<td>' +
-                            //TODO добаить сюда логику изменения дропбокса
-                                    '<select class="form-select text-light bg-transparent" id="inputGroupSelect02">' +
-                                        '<option selected value="Ничего" class="bg-dark">Нет повреждений</option>' +
-                                        '<option value="1" class="bg-dark">One</option>' +
-                                        '<option value="2" class="bg-dark">Two</option>' +
-                                        '<option value="3" class="bg-dark">Three</option>' +
-                                    '</select>' +
+                                '<td width="25%">' +
+                                    newDropbox +
                                 '</td>' +
                             '</tr>'
                         );
                     } else {
                         $('#regulationsTable').append(
-                            '<tr class="text-light text-start">' +
+                            '<tr class="text-start">' +
                                 '<td>'+ row.criterionName + '</td> ' +
-                                '<td>' +
+                                '<td width="25%">' +
                                     '<div class="input-group-text">' +
-                                        // todo добавить сюда логику изменения состояния (нажат чекбокс - сохранен в памяти)
-                                        '<input class="form-check-input mt-0 mx-auto" type="checkbox" value="" id="'+ row.criterionName +'">' +
+                                        '<input class="form-check-input mt-0 mx-auto" type="checkbox" value="" id="'+ row.criterionName +'" onchange="onRegulationsChecked('+ row.id +', this.checked)">' +
                                     '</div>' +
                                 '</td>' +
                             '</tr>'
@@ -151,11 +159,20 @@ function getRegulations() {
     });
 }
 
-function onDefectSelected(detailId, value) {
+function onRegulationsChecked(regulationsId, isChecked) {
     $.ajax({
-        url: '/defect',
+        url: '/regulations',
         type: 'POST',
-        data: JSON.stringify({"detailId":detailId, "value":value}),
+        data: JSON.stringify({"regulationsId":regulationsId, "isChecked":isChecked}),
+        contentType: 'application/json'
+    });
+}
+
+function onBodyWorkSelected(regulationsId, bodyWorkName) {
+    $.ajax({
+        url: '/bodyWork',
+        type: 'POST',
+        data: JSON.stringify({"regulationsId":regulationsId, "bodyWorkName":bodyWorkName}),
         contentType: 'application/json'
     });
 }

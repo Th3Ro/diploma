@@ -31,16 +31,20 @@ public class Regulations {
             joinColumns = { @JoinColumn(name = "regulations_id") },
             inverseJoinColumns = { @JoinColumn(name = "body_work_id") }
     )
-    @JsonIgnore
     private List<BodyWork> bodyWorks = new ArrayList<>();
 
     @OneToOne(mappedBy = "regulations")
     @JsonIgnore
     private ServicePrice servicePrice;
 
-    @OneToMany(mappedBy = "regulations", fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "regulations_details",
+            joinColumns = { @JoinColumn(name = "regulations_id") },
+            inverseJoinColumns = { @JoinColumn(name = "details_id") }
+    )
     @JsonIgnore
-    private List<Detail> details;
+    private List<Detail> details = new ArrayList<>();
 
     @Override
     public String toString() {
