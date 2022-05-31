@@ -24,6 +24,9 @@ public class ModelController {
 
     @PostMapping("/model")
     public void selectModel(@RequestBody String modelId) {
+        SelectedItemsByUserHelper.clearSelectedModel();
+        SelectedItemsByUserHelper.clearSelectedVendorCodesAndRegulations();
+        SelectedItemsByUserHelper.clearSelectedBodyWorks();
         Model selectedModel = modelService.findById(Long.parseLong(modelId));
         SelectedItemsByUserHelper.changeSelectedModel(selectedModel);
     }

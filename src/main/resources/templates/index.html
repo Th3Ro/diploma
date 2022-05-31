@@ -92,8 +92,26 @@
                     <div class="container px-4 px-lg-5 d-flex mt-4 h-100 align-items-center justify-content-center">
                         <div class="d-flex justify-content-center">
                             <div class="text-center">
-                                <a class="btn btn-primary" onclick="goCalculate()" href="javascript:void(0)">Завершить расчёт</a>
+                                <a class="btn btn-primary" onclick="getCalculationResult()" href="javascript:void(0)">Завершить расчёт</a>
                             </div>
+                        </div>
+                    </div>
+                    <div class="preloader-3 mt-5 hidden" id="preloader">
+                        <svg viewBox="-2000 -1000 4000 2000">
+                            <path id="inf" d="M354-354A500 500 0 1 1 354 354L-354-354A500 500 0 1 0-354 354z"></path>
+                            <use xlink:href="#inf" stroke-dasharray="1570 5143" stroke-dashoffset="6713px"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center hidden mb-5" id="calculations">
+                    <div class="col-lg-8">
+                        <h2 class="text-white">Результат расчёта</h2>
+                    </div>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 mb-3">
+                            <table class="table table-bordered table-dark mt-4" id="calculationsResults">
+                                <!-- Calculations here -->
+                            </table>
                         </div>
                     </div>
                 </div>

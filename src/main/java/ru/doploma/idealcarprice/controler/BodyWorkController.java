@@ -35,7 +35,8 @@ public class BodyWorkController {
                         detail.getId(),
                         SelectedItemsByUserHelper.getSelectedModel().getId()));
             }
-            SelectedItemsByUserHelper.addToSelectedVendorCodesAndRegulations(selectedRegulations.getId().toString(), vendorCodes);
+            SelectedItemsByUserHelper.addToSelectedBodyWorks(selectedRegulations.getId(), bodyWork);
+            SelectedItemsByUserHelper.addToSelectedVendorCodesAndRegulations(selectedRegulations.getId(), vendorCodes);
         } else {
             try {
                 SelectedItemsByUserHelper.removeFromSelectedVendorCodesAndRegulations(dto.regulationsId);

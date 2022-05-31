@@ -176,3 +176,81 @@ function onBodyWorkSelected(regulationsId, bodyWorkName) {
         contentType: 'application/json'
     });
 }
+
+function getCalculationResult() {
+    console.log('worked!');
+    togglePreloader();
+    $.ajax({
+        url: '/calculation',
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            togglePreloader();
+            $('#calculations').empty();
+            $("#calculations").removeClass('hidden');
+            $("#calculations").append(
+                '<div class="col-lg-8">' +
+                    '<h2 class="text-danger">Средняя цена автомобиля на рынке: ' + response.averageCarPrice + ' ₽</h2>' +
+                    '<h2 class="text-danger">Стоимость ремонта (с учетом деталей): ' + response.repairPrice + ' ₽</h2>' +
+                    '<h2 class="text-danger">Стоимость авто с ремонтом (с учетом деталей): ' + response.totalCarPrice + ' ₽</h2>' +
+                '</div>'
+                );
+            $("#calculations").append(
+                '<div class="col-lg-8">' +
+                '<h2 class="text-white">Таблица необходимых деталей</h2>' +
+                '</div>'
+            );
+            let detailTable =
+                '<table class="table table-bordered table-dark mt-4">' +
+                    '<tr>' +
+                        '<th scope="col">Ссылка</th>' +
+                        '<th scope="col">Цена</th>' +
+                        '<th scope="col">Необходимое кол-во</th>' +
+                        '<th scope="col">Всего</th>' +
+                    '</tr>';
+
+            for (let key in response.detailLinksAndPrices) {
+                detailTable +=
+                    '<tr class="text-start">' +
+                        '<td>' + key + '</td>' +
+                        '<td>' + response.detailLinksAndPrices[key].priceForOne + '</td>' +
+                        '<td>' + response.detailLinksAndPrices[key].detailsCount + '</td>' +
+                        '<td>' + response.detailLinksAndPrices[key].totalPrice + '</td>' +
+                    '</tr>';
+            }
+
+            detailTable += '</table>';
+            $("#calculations").append(detailTable);
+
+            $("#calculations").append(
+                '<div class="col-lg-8">' +
+                '<h2 class="text-white">Таблица работа и их стоимости</h2>' +
+                '</div>'
+            );
+
+            let repairTable =
+                '<table class="table table-bordered table-dark mt-4">' +
+                    '<tr>' +
+                        '<th scope="col">Работа</th>' +
+                        '<th scope="col">Цена</th>' +
+                    '</tr>';
+
+            for (let key in response.regulationsNamesAndServicePrices) {
+                repairTable +=
+                    '<tr class="text-start">' +
+                    '<td>' + key + '</td>' +
+                    '<td>' + response.regulationsNamesAndServicePrices[key] + '</td>' +
+                    '</tr>';
+            }
+
+            repairTable += '</table>';
+            $("#calculations").append(repairTable);
+        }
+    });
+}
+
+function togglePreloader () {
+    if ($('#preloader').attr('class').split(/\s+/).includes('hidden')) {
+        $('#preloader').removeClass('hidden');
+    } else $('#preloader').addClass('hidden');
+}

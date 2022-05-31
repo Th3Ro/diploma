@@ -1,5 +1,6 @@
 package ru.doploma.idealcarprice.helper;
 
+import ru.doploma.idealcarprice.model.BodyWork;
 import ru.doploma.idealcarprice.model.Model;
 import ru.doploma.idealcarprice.model.PartCode;;
 
@@ -7,7 +8,9 @@ import java.util.*;
 
 public class SelectedItemsByUserHelper {
     private static Model selectedModel = null;
-    private static Map<String, List<PartCode>> selectedPartCodesAndRegulations = new HashMap<>();
+    private static Map<Long, List<PartCode>> selectedPartCodesAndRegulations = new HashMap<>();
+    // todo добавить методы, для работы с выбранными кузовными работами
+    private static Map<Long, BodyWork> selectedBodyWorks = new HashMap<>();
 
     public static void changeSelectedModel(Model model) {
         selectedModel = model;
@@ -21,11 +24,11 @@ public class SelectedItemsByUserHelper {
         selectedModel = null;
     }
 
-    public static void addToSelectedVendorCodesAndRegulations(String regulationsId, List<PartCode> partCodes) {
+    public static void addToSelectedVendorCodesAndRegulations(Long regulationsId, List<PartCode> partCodes) {
         selectedPartCodesAndRegulations.put(regulationsId, partCodes);
     }
 
-    public static Map<String, List<PartCode>> getSelectedPartCodesAndRegulations() {
+    public static Map<Long, List<PartCode>> getSelectedPartCodesAndRegulations() {
         return selectedPartCodesAndRegulations;
     }
 
@@ -35,5 +38,21 @@ public class SelectedItemsByUserHelper {
 
     public static void removeFromSelectedVendorCodesAndRegulations(String regulationsId) {
         selectedPartCodesAndRegulations.remove(regulationsId);
+    }
+
+    public static void addToSelectedBodyWorks(Long selectedRegulations, BodyWork bodyWork) {
+        selectedBodyWorks.put(selectedRegulations, bodyWork);
+    }
+
+    public static Map<Long, BodyWork> getSelectedBodyWorks() {
+        return selectedBodyWorks;
+    }
+
+    public static void clearSelectedBodyWorks() {
+        selectedBodyWorks.clear();
+    }
+
+    public static void removeFromSelectedBodyWorks(String selectedRegulations) {
+        selectedBodyWorks.remove(selectedRegulations);
     }
 }

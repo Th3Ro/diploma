@@ -284,7 +284,7 @@ INSERT INTO supplier_sites VALUES
 -- цена первого в выдаче результата
 INSERT INTO supplier_xpaths VALUES
 --(id, value, supplier_site_id)
-(1,     '/html/body/div[2]/div[5]/form/table/tbody/tr[3]/td/table/tbody[1]/tr[1]/td/div/div/div[2]/div[1]/div[1]/div/div/div/span[1]',      1);
+(1,     'price-per-quantity__price',      1);
 
 INSERT INTO brands VALUES
 --(id,  name)

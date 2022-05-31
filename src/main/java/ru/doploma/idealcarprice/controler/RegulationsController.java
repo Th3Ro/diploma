@@ -34,7 +34,7 @@ public class RegulationsController {
                         detail.getId(),
                         SelectedItemsByUserHelper.getSelectedModel().getId()));
             }
-            SelectedItemsByUserHelper.addToSelectedVendorCodesAndRegulations(selectedRegulations.getId().toString(), vendorCodes);
+            SelectedItemsByUserHelper.addToSelectedVendorCodesAndRegulations(selectedRegulations.getId(), vendorCodes);
         } else {
             try {
                 SelectedItemsByUserHelper.removeFromSelectedVendorCodesAndRegulations(dto.regulationsId);

@@ -8,9 +8,10 @@ import ru.doploma.idealcarprice.helper.SelectedItemsByUserHelper;
 public class MainController {
 
     @RequestMapping("/")
-    public String index() {
-        SelectedItemsByUserHelper.clearSelectedVendorCodesAndRegulations();
+    public String index () {
         SelectedItemsByUserHelper.clearSelectedModel();
+        SelectedItemsByUserHelper.clearSelectedVendorCodesAndRegulations();
+        SelectedItemsByUserHelper.clearSelectedBodyWorks();
         return "index";
     }
 }
