@@ -9,7 +9,6 @@ import java.util.*;
 public class SelectedItemsByUserHelper {
     private static Model selectedModel = null;
     private static Map<Long, List<PartCode>> selectedPartCodesAndRegulations = new HashMap<>();
-    // todo добавить методы, для работы с выбранными кузовными работами
     private static Map<Long, BodyWork> selectedBodyWorks = new HashMap<>();
 
     public static void changeSelectedModel(Model model) {

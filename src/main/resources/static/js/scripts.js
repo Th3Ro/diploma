@@ -204,7 +204,7 @@ function getCalculationResult() {
                 '<table class="table table-bordered table-dark mt-4">' +
                     '<tr>' +
                         '<th scope="col">Ссылка</th>' +
-                        '<th scope="col">Цена</th>' +
+                        '<th scope="col">Цена от</th>' +
                         '<th scope="col">Необходимое кол-во</th>' +
                         '<th scope="col">Всего</th>' +
                     '</tr>';
@@ -212,7 +212,7 @@ function getCalculationResult() {
             for (let key in response.detailLinksAndPrices) {
                 detailTable +=
                     '<tr class="text-start">' +
-                        '<td>' + key + '</td>' +
+                        '<td><a href="'+ key +'">' + key + '</a></td>' +
                         '<td>' + response.detailLinksAndPrices[key].priceForOne + '</td>' +
                         '<td>' + response.detailLinksAndPrices[key].detailsCount + '</td>' +
                         '<td>' + response.detailLinksAndPrices[key].totalPrice + '</td>' +
@@ -232,7 +232,7 @@ function getCalculationResult() {
                 '<table class="table table-bordered table-dark mt-4">' +
                     '<tr>' +
                         '<th scope="col">Работа</th>' +
-                        '<th scope="col">Цена</th>' +
+                        '<th scope="col">Цена от</th>' +
                     '</tr>';
 
             for (let key in response.regulationsNamesAndServicePrices) {

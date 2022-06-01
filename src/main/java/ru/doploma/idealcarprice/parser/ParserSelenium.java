@@ -9,13 +9,12 @@ import ru.doploma.idealcarprice.dto.CalculationDetailDTO;
 import ru.doploma.idealcarprice.helper.AutoRuHelper;
 import ru.doploma.idealcarprice.model.PartCode;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ParserSelenium {
+
     public static String parseAveragePrice(String modelCode) {
         System.setProperty("webdriver.chrome.driver", "webdriver\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
