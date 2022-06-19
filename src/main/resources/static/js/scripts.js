@@ -14,9 +14,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
     };
 
-    // Shrink the navbar 
-    navbarShrink();
-
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
@@ -189,10 +186,10 @@ function getCalculationResult() {
             $('#calculations').empty();
             $("#calculations").removeClass('hidden');
             $("#calculations").append(
-                '<div class="col-lg-8">' +
-                    '<h2 class="text-danger">Средняя цена автомобиля на рынке: ' + response.averageCarPrice + ' ₽</h2>' +
-                    '<h2 class="text-danger">Стоимость ремонта (с учетом деталей): ' + response.repairPrice + ' ₽</h2>' +
-                    '<h2 class="text-danger">Стоимость авто с ремонтом (с учетом деталей): ' + response.totalCarPrice + ' ₽</h2>' +
+                '<div class="col-lg-12">' +
+                    '<h2 class="text-white">Средняя цена автомобиля на рынке: <span style="color: red">' + response.averageCarPrice + ' ₽</span></h2>' +
+                    '<h2 class="text-white">Стоимость ремонта (с учетом деталей): <span style="color: red">' + response.repairPrice + ' ₽</span></h2>' +
+                    '<h2 class="text-white">Стоимость авто с ремонтом (с учетом деталей): <span style="color: red">' + response.totalCarPrice + ' ₽</span></h2>' +
                 '</div>'
                 );
             $("#calculations").append(
@@ -212,7 +209,7 @@ function getCalculationResult() {
             for (let key in response.detailLinksAndPrices) {
                 detailTable +=
                     '<tr class="text-start">' +
-                        '<td><a href="'+ key +'">' + key + '</a></td>' +
+                        '<td><a href="'+ key +'" target="_blank">' + key + '</a></td>' +
                         '<td>' + response.detailLinksAndPrices[key].priceForOne + '</td>' +
                         '<td>' + response.detailLinksAndPrices[key].detailsCount + '</td>' +
                         '<td>' + response.detailLinksAndPrices[key].totalPrice + '</td>' +
@@ -223,7 +220,7 @@ function getCalculationResult() {
             $("#calculations").append(detailTable);
 
             $("#calculations").append(
-                '<div class="col-lg-8">' +
+                '<div class="col-lg-12">' +
                 '<h2 class="text-white">Таблица работа и их стоимости</h2>' +
                 '</div>'
             );

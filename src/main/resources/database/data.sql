@@ -276,14 +276,13 @@ INSERT INTO regulations_body_works VALUES
 (75,    6),
 (75,    7);
 
--- todo заменять "vendor_code" на артикул в коде потом
 INSERT INTO supplier_sites VALUES
---(id, url)
+--(id,  url)
 (1,     'https://baza.drom.ru/sell_spare_parts/?query=vendor_code&sortBy=pricea');
 
 -- цена первого в выдаче результата
 INSERT INTO supplier_xpaths VALUES
---(id, value, supplier_site_id)
+--(id,  value,                          supplier_site_id)
 (1,     'price-per-quantity__price',      1);
 
 INSERT INTO brands VALUES
@@ -363,7 +362,9 @@ INSERT INTO details VALUES
 (20,    'Передний правый амортизатор'),
 (21,    'Передний левый амортизатор'),
 (22,    'Задний правый амортизатор'),
-(23,    'Задний левый амортизатор');
+(23,    'Задний левый амортизатор'),
+(24,    'Передний тормозной шланг')
+;
 
 INSERT INTO regulations_details VALUES
 --(regulations_id, detail_id)
@@ -395,11 +396,12 @@ INSERT INTO regulations_details VALUES
 (34,    20),
 (34,    21),
 (36,    22),
-(36,    23);
+(36,    23),
+(3,     24)
+;
 
 INSERT INTO part_codes VALUES
 --(id, count,  vendor_code, detail_id, model_id)
---vaz 2107
 (1,     1,    '21070280301510',   1,      1),
 (2,     1,    '21070280401510',   2,      1),
 (3,     1,    '21058403011',      3,      1),
@@ -423,4 +425,6 @@ INSERT INTO part_codes VALUES
 (21,    1,    'ford1305638',      23,     11),
 (22,    1,    'ford1420114',      4,      11),
 (23,    1,    'ford1619269',      20,     8),
-(24,    1,    'ford1619274',      21,     8);
+(24,    1,    'ford1619274',      21,     8),
+(25,    2,    'ford1426690',      24,     11)
+;

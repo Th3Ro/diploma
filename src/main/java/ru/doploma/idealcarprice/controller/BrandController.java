@@ -1,4 +1,4 @@
-package ru.doploma.idealcarprice.controler;
+package ru.doploma.idealcarprice.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
